@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { draftMode } from "next/headers";
 
-import MoreStories from "../../more-stories";
-import Avatar from "../../avatar";
-import Date from "../../date";
-import CoverImage from "../../cover-image";
+import MoreStories from "../../components/more-stories";
+import Avatar from "../../components/avatar";
+import Date from "../../components/date";
+import CoverImage from "../../components/cover-image";
 
-import { Markdown } from "@/lib/markdown";
-import { getAllPosts, getPostAndMorePosts } from "@/lib/api";
+import { Markdown } from "@/src/lib/markdown";
+import { getAllPosts, getPostAndMorePosts } from "@/src/lib/api";
 
 export async function generateStaticParams() {
   const allPosts = await getAllPosts(false);

@@ -1,17 +1,25 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
-import { EXAMPLE_PATH, CMS_NAME } from "@/lib/constants";
+import { cn } from "@/src/lib/utils";
+import { Quicksand } from "next/font/google";
+import localFont from 'next/font/local';
+import { EXAMPLE_PATH, CMS_NAME } from "@/src/lib/constants";
 
 export const metadata = {
   title: `Next.js and ${CMS_NAME} Example`,
   description: `This is a blog built with Next.js and ${CMS_NAME}.`,
 };
 
-const inter = Inter({
-  variable: "--font-inter",
+const quicksand = Quicksand({
+  variable: "--font-quicksand",
   subsets: ["latin"],
   display: "swap",
 });
+
+const gorditaRegular = localFont({ 
+  src:'../../public/fonts/Gordita-Regular.woff2',
+  variable: '--font-gordita',
+  display: 'swap',
+})
 
 function Footer() {
   return (
@@ -47,7 +55,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={cn(quicksand.className, gorditaRegular.variable)}>
       <body>
         <section className="min-h-screen">
           <main>{children}</main>
