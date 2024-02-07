@@ -7,7 +7,7 @@ import Date from "../../components/date";
 import CoverImage from "../../components/cover-image";
 
 import { Markdown } from "@/src/lib/markdown";
-import { getAllPosts, getPostAndMorePosts } from "@/src/lib/api";
+import { getAllPosts, getPostAndMorePosts } from "@/src/app/api/api";
 
 export async function generateStaticParams() {
   const allPosts = await getAllPosts(false);

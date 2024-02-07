@@ -2,11 +2,10 @@ import "./globals.css";
 import { cn } from "@/src/lib/utils";
 import { Quicksand } from "next/font/google";
 import localFont from 'next/font/local';
-import { EXAMPLE_PATH, CMS_NAME } from "@/src/lib/constants";
 
 export const metadata = {
-  title: `Next.js and ${CMS_NAME} Example`,
-  description: `This is a blog built with Next.js and ${CMS_NAME}.`,
+  title: `Next.js and Protopace Example`,
+  description: `This is a blog built with Next.js and Contentful`,
 };
 
 const quicksand = Quicksand({
@@ -37,7 +36,7 @@ function Footer() {
               Read Documentation
             </a>
             <a
-              href={`https://github.com/vercel/next.js/tree/canary/examples/${EXAMPLE_PATH}`}
+              href={`https://github.com/vercel/next.js/tree/canary/examples/`}
               className="mx-3 font-bold hover:underline"
             >
               View on GitHub
