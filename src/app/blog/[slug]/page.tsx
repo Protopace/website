@@ -4,26 +4,35 @@ import { draftMode } from "next/headers";
 import MoreStories from "../../components/more-stories";
 import Avatar from "../../components/avatar";
 import Date from "../../components/date";
-import CoverImage from "../../components/cover-image";
+import CoverImage from "../cover-image";
 
-import { Markdown } from "@/src/lib/markdown";
-import { getAllPosts, getPostAndMorePosts } from "@/src/app/api/api";
+import { client } from "@/src/app/api/client";
+import { Post } from "@/src/app/api/interfaces/post";
 
-export async function generateStaticParams() {
-  const allPosts = await getAllPosts(false);
+import { Markdown } from "@/src/app/components/markdown";
+import RichText from "@/src/app/components/rich-text";
 
-  return allPosts.map((post) => ({
-    slug: post.slug,
-  }));
-}
+type Props = {
+  params: {
+    slug: string;
+  };
+};
 
-export default async function PostPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const { isEnabled } = draftMode();
-  const { post, morePosts } = await getPostAndMorePosts(params.slug, isEnabled);
+export const dynamic ="auto",
+  fetchCache = "auto",
+  revalidate = 10;
+
+export default async function PostPage({ params } : Props ) {
+
+  const slug = params.slug;
+
+  const response  = await client.getEntries({
+    content_type: "post",
+    "fields.slug": slug,
+  })
+
+  const post : Post = response.items[0];
+  console.log(post);
 
   return (
     <div className="container mx-auto px-5">
@@ -35,35 +44,38 @@ export default async function PostPage({
       </h2>
       <article>
         <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-          {post.title}
+          {post.fields.title}
         </h1>
         <div className="hidden md:block md:mb-12">
-          {post.author && (
-            <Avatar name={post.author.name} picture={post.author.picture} />
+          {post.fields.author.fields.name && (
+            <Avatar name={post.fields.author.fields.name} picture={post.fields.author.fields.picture} />
           )}
         </div>
         <div className="mb-8 md:mb-16 sm:mx-0">
-          <CoverImage title={post.title} url={post.coverImage.url} />
+          <CoverImage
+            title={post.fields.title}
+            description={post.fields.coverImage.fields.description}
+            url={post.fields.coverImage.fields.file.url}
+            />
         </div>
         <div className="max-w-2xl mx-auto">
           <div className="block md:hidden mb-6">
-            {post.author && (
-              <Avatar name={post.author.name} picture={post.author.picture} />
+            {post.fields.author.fields.name && (
+              <Avatar name={post.fields.author.fields.name} picture={post.fields.author.fields.picture} />
             )}
           </div>
           <div className="mb-6 text-lg">
-            <Date dateString={post.date} />
+            <Date dateString={post.fields.date} />
           </div>
         </div>
 
         <div className="max-w-2xl mx-auto">
           <div className="prose">
-            <Markdown content={post.content} />
+            <RichText content={post.fields.content} />
           </div>
         </div>
       </article>
       <hr className="border-accent-2 mt-28 mb-24" />
-      <MoreStories morePosts={morePosts} />
     </div>
   );
 }

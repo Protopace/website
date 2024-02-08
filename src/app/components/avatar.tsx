@@ -1,4 +1,4 @@
-import ContentfulImage from "@/src/lib/contentful-image";
+import ContentfulImage from "@/src/app/components/contentful-image";
 
 export default function Avatar({
   name,
@@ -15,7 +15,7 @@ export default function Avatar({
           className="object-cover h-full rounded-full"
           height={48}
           width={48}
-          src={picture.url}
+          src={picture.fields.file.url}
         />
       </div>
       <div className="text-xl font-bold">{name}</div>

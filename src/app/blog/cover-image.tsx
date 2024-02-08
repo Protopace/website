@@ -1,4 +1,4 @@
-import ContentfulImage from "../../lib/contentful-image";
+import ContentfulImage from "../components/contentful-image";
 import Link from "next/link";
 
 function cn(...classes: any[]) {
@@ -7,16 +7,18 @@ function cn(...classes: any[]) {
 
 export default function CoverImage({
   title,
+  description,
   url,
   slug,
 }: {
   title: string;
+  description: string;
   url: string;
   slug?: string;
 }) {
   const image = (
     <ContentfulImage
-      alt={`Cover Image for ${title}`}
+      alt={`${description}`}
       priority
       width={2000}
       height={1000}
@@ -30,7 +32,7 @@ export default function CoverImage({
   return (
     <div className="sm:mx-0">
       {slug ? (
-        <Link href={`/posts/${slug}`} aria-label={title}>
+        <Link href={`/blog/${slug}`} aria-label={title}>
           {image}
         </Link>
       ) : (
