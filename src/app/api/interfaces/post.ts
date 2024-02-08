@@ -1,12 +1,4 @@
-export interface Image {
-    fields: {
-        title: string;
-        description: string;
-        file: {
-            url: string;
-        }
-    }
-}
+import { Image } from "./image";
 
 export interface Post {
     sys: {

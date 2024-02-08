@@ -1,7 +1,5 @@
 import Link from "next/link";
-import { draftMode } from "next/headers";
 
-import MoreStories from "../../components/more-stories";
 import Avatar from "../../components/avatar";
 import Date from "../../components/date";
 import CoverImage from "../cover-image";
@@ -9,7 +7,6 @@ import CoverImage from "../cover-image";
 import { client } from "@/src/app/api/client";
 import { Post } from "@/src/app/api/interfaces/post";
 
-import { Markdown } from "@/src/app/components/markdown";
 import RichText from "@/src/app/components/rich-text";
 
 type Props = {
@@ -25,14 +22,11 @@ export const dynamic ="auto",
 export default async function PostPage({ params } : Props ) {
 
   const slug = params.slug;
-
   const response  = await client.getEntries({
     content_type: "post",
     "fields.slug": slug,
   })
-
   const post : Post = response.items[0];
-  console.log(post);
 
   return (
     <div className="container mx-auto px-5">

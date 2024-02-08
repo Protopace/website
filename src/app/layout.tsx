@@ -1,9 +1,13 @@
 import "./globals.css";
+import { client } from "@/src/app/api/client";
+import { Metadata } from "next";
 import { cn } from "@/src/lib/utils";
 import { Quicksand } from "next/font/google";
 import localFont from 'next/font/local';
 
 import Footer from "@/src/app/components/footer";
+
+/* Import fonts to the main layout */
 
 const quicksand = Quicksand({
   variable: "--font-quicksand",
@@ -17,10 +21,8 @@ const gorditaRegular = localFont({
   display: 'swap',
 })
 
-export const metadata = {
-  title: `Protopac`,
-  description: `This is a blog built with Next.js and Contentful`,
-};
+/* Populate metadata on the layout page */
+
 
 export default function RootLayout({
   children,
