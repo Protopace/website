@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Metadata } from "next";
 
 function Intro() {
   return (
@@ -20,8 +21,15 @@ function Intro() {
   );
 }
 
+export const metadata: Metadata = {
+  title:"Protopace",
+  description: "Protopace - Smash toyu company's growth targets without breaking a sweat",
+  twitter: {
+    card: "summary_large_image"
+  }
+}
 
-export default async function Page() {
+export default function Page() {
 
   return (
     <div className="container mx-auto px-5">
