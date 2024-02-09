@@ -4,6 +4,7 @@ import { client } from "@/src/app/api/client";``
 import { Metadata } from "next";
 import { SiteConfig } from "./api/interfaces/site-config";
 import Script from "next/script";
+import Head from "next/head";
 import { Organization, WithContext } from "schema-dts";
 
 const getSiteConfig = cache(async() => {
@@ -82,15 +83,18 @@ export default async function Page() {
   const siteConfig:SiteConfig = await getSiteConfig();
 
   return (
-    <>
-    <Script
-      type="application/ld+json"
-      strategy="beforeInteractive"
-      dangerouslySetInnerHTML={{__html: JSON.stringify(generateOrganizationJsonLd(siteConfig))}}
-    />
-    <div className="container mx-auto px-5">
-      <Link href={"/blog"}>Blog</Link>
+    <div>
+      <Head>
+        <Script
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(generateOrganizationJsonLd(siteConfig))}}
+        />
+        </Head>
+
+      <div className="container mx-auto px-5">
+        <Link href={"/blog"}>Blog</Link>
+      </div>
     </div>
-    </>
   );
 }
