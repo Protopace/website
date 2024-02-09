@@ -32,10 +32,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn(quicksand.className, gorditaRegular.variable)}>
       <body>
-        <section className="min-h-screen">
           <main>{children}</main>
           <Footer />
-        </section>
       </body>
     </html>
   );

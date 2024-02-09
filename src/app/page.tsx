@@ -3,7 +3,7 @@ import { cache } from "react";
 import { client } from "@/src/app/api/client";``
 import { Metadata } from "next";
 import { SiteConfig } from "./api/interfaces/site-config";
-import StructuredData from "@/src/app/components/structured-data";
+import Script from "next/script";
 import { Organization, WithContext } from "schema-dts";
 
 const getSiteConfig = cache(async() => {
@@ -25,6 +25,7 @@ const generateOrganizationJsonLd = (siteConfig:SiteConfig):WithContext<Organizat
     name: siteConfig.fields.name,
   }
 
+  console.log(JSON.stringify(schema))
   return schema;
 }
 
@@ -79,11 +80,13 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Page() {
 
   const siteConfig:SiteConfig = await getSiteConfig();
-  console.log(siteConfig);
 
   return (
     <>
-    <StructuredData data={generateOrganizationJsonLd(siteConfig)}></StructuredData>
+    <Script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{__html: JSON.stringify(generateOrganizationJsonLd(siteConfig))}}
+    />
     <div className="container mx-auto px-5">
       <Link href={"/blog"}>Blog</Link>
     </div>
