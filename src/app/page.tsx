@@ -85,6 +85,7 @@ export default async function Page() {
     <>
     <Script
       type="application/ld+json"
+      strategy="beforeInteractive"
       dangerouslySetInnerHTML={{__html: JSON.stringify(generateOrganizationJsonLd(siteConfig))}}
     />
     <div className="container mx-auto px-5">
