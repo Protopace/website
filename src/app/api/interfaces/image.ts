@@ -4,6 +4,12 @@ export interface Image {
         description: string;
         file: {
             url: string;
+            details: {
+                image: {
+                    width: number;
+                    height: number;
+                }
+            }
         }
     }
 }

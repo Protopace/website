@@ -30,35 +30,34 @@ export async function generateMetadata(): Promise<Metadata> {
   })
 
   const siteConfig: SiteConfig = response.items[0];
-  console.log(siteConfig.fields.seoMetadata.fields.ogImage.fields.file);
+  console.log(siteConfig.sys.locale);
 
   var ogImageUrl = siteConfig.fields.seoMetadata.fields.ogImage.fields.file.url;
   var ogImageUrlStripped = ogImageUrl.split('/').slice(3).join('/');
-  console.log(ogImageUrlStripped);
 
   return {
     title: siteConfig.fields.seoMetadata.fields.seoTitle,
-    description: siteConfig.fields.seoMetadata.fields.seoTitle,
+    description: siteConfig.fields.seoMetadata.fields.seoDescription,
     openGraph: {
       title: siteConfig.fields.seoMetadata.fields.seoTitle,
-      description: siteConfig.fields.seoMetadata.fields.seoTitle,
+      description: siteConfig.fields.seoMetadata.fields.seoDescription,
       url: siteConfig.fields.seoMetadata.fields.canonicalUrl,
       siteName: siteConfig.fields.seoMetadata.fields.seoTitle,
       images: [
         {
           url: ogImageUrlStripped,
-          width: 1200,
-          height: 630,
+          width: siteConfig.fields.seoMetadata.fields.ogImage.fields.file.details.image.width,
+          height: siteConfig.fields.seoMetadata.fields.ogImage.fields.file.details.image.height,
           alt: siteConfig.fields.seoMetadata.fields.ogImage.fields.description,
         }
       ],
-      locale: 'en_US',
+      locale: siteConfig.sys.locale,
       type: 'website',
     },
     twitter: {
       card: 'summary_large_image',
       title: siteConfig.fields.seoMetadata.fields.seoTitle,
-      description: siteConfig.fields.seoMetadata.fields.seoTitle,
+      description: siteConfig.fields.seoMetadata.fields.seoDescription,
       creator: '@protopace',
       images: [ogImageUrlStripped],
     },
