@@ -23,7 +23,7 @@ function Intro() {
 
 export const metadata: Metadata = {
   title:"Protopace",
-  description: "Protopace - Smash your company's growth targets without breaking a sweat",
+  description: "Smash your company's growth targets without breaking a sweat.",
   twitter: {
     card: "summary_large_image"
   }
