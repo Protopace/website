@@ -16,12 +16,14 @@ const getSiteConfig = cache(async() => {
   return siteConfig;
 })
 
-const generateOrganizationJsonLd = (siteConfig:SiteConfig):WithContext<Organization> => {
+const addOrganizacionJsonLd = (siteConfig:SiteConfig):WithContext<Organization> => {
 
   const schema: WithContext<Organization> = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: siteConfig.fields.name,
+    url: 'https://www.protopace.com/',
+
   }
 
   return schema;
@@ -78,13 +80,15 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Page() {
 
   const siteConfig:SiteConfig = await getSiteConfig();
+  const structuredData = { __html:JSON.stringify(addOrganizacionJsonLd(siteConfig))}
 
   return (
     <div>
       <Script
         type="application/ld+json"
+        key="organization-jsonld"
         strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateOrganizationJsonLd(siteConfig)) }}
+        dangerouslySetInnerHTML={structuredData}
       />
 
       <div className="container mx-auto px-5">
