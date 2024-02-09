@@ -1,5 +1,7 @@
 import Link from "next/link";
+import { client } from "@/src/app/api/client";``
 import { Metadata } from "next";
+import { SiteConfig } from "./api/interfaces/site-config";
 
 function Intro() {
   return (
@@ -21,11 +23,53 @@ function Intro() {
   );
 }
 
-export const metadata: Metadata = {
-  title:"Protopace",
-  description: "Smash your company's growth targets without breaking a sweat.",
-  twitter: {
-    card: "summary_large_image"
+export async function generateMetadata(): Promise<Metadata> {
+
+  const response = await client.getEntries({
+    content_type: "siteConfig",
+  })
+
+  const siteConfig: SiteConfig = response.items[0];
+  console.log(siteConfig.fields);
+
+  return {
+    title: siteConfig.fields.seoMetadata.fields.seoTitle,
+    description: siteConfig.fields.seoMetadata.fields.seoTitle,
+    openGraph: {
+      title: siteConfig.fields.seoMetadata.fields.seoTitle,
+      description: siteConfig.fields.seoMetadata.fields.seoTitle,
+      url: siteConfig.fields.seoMetadata.fields.canonicalUrl,
+      siteName: siteConfig.fields.seoMetadata.fields.seoTitle,
+      images: [
+        {
+          url: `https: ${siteConfig.fields.seoMetadata.fields.ogImage.fields.file.url}`,
+          width: 1200,
+          height: 630,
+          alt: siteConfig.fields.seoMetadata.fields.ogImage.fields.description,
+        }
+      ],
+      locale: 'en_US',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: siteConfig.fields.seoMetadata.fields.seoTitle,
+      description: siteConfig.fields.seoMetadata.fields.seoTitle,
+      creator: '@protopace',
+      images: [`https: ${siteConfig.fields.seoMetadata.fields.ogImage.fields.file.url}`],
+    },
+    verification: {
+      google: siteConfig.fields.googleVerification,
+      yandex: siteConfig.fields.baiduVerification,
+      other: {
+        baidu: siteConfig.fields.yandexVerification,
+        bing: siteConfig.fields.bingVerification,
+      },
+    },
+    robots: {
+      index: !siteConfig.fields.seoMetadata.fields.noIndex,
+      follow: !siteConfig.fields.seoMetadata.fields.noFollow,
+    }
   }
 }
 
