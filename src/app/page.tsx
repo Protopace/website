@@ -21,11 +21,24 @@ const addOrganizacionJsonLd = (siteConfig:SiteConfig):WithContext<Organization> 
   const schema: WithContext<Organization> = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: siteConfig.fields.name,
     url: 'https://www.protopace.com/',
-
+    logo: `https:${siteConfig.fields.logo.fields.file.url}`,
+    image: `https:${siteConfig.fields.logo.fields.file.url}`,
+    name: siteConfig.fields.name,
+    description: siteConfig.fields.seoMetadata.fields.seoDescription,
+    email: 'info@protopace.com',
+    telephone: '+1-404-662-4945',
+    address: {
+      '@type': "PostalAddress",
+      'streetAddress': '756 W Peachtree St NW',
+      addressLocality: 'Atlanta',
+      addressRegion: 'GA',
+      postalCode: '30308',
+      addressCountry: 'US'
+    }
   }
 
+  console.log(schema);
   return schema;
 }
 
@@ -87,7 +100,7 @@ export default async function Page() {
       <Script
         type="application/ld+json"
         key="organization-jsonld"
-        strategy="afterInteractive"
+        strategy="beforeInteractive"
         dangerouslySetInnerHTML={structuredData}
       />
 
