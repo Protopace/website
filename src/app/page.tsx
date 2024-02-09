@@ -6,7 +6,7 @@ import { SiteConfig } from "./api/interfaces/site-config";
 import StructuredData from "@/src/app/components/structured-data";
 import { Organization, WithContext } from "schema-dts";
 
-export const getSiteConfig = cache(async() => {
+const getSiteConfig = cache(async() => {
   const response = await client.getEntries({
     content_type: "siteConfig",
   })
@@ -16,6 +16,17 @@ export const getSiteConfig = cache(async() => {
 
   return siteConfig;
 })
+
+const generateOrganizationJsonLd = (siteConfig:SiteConfig):WithContext<Organization> => {
+
+  const schema: WithContext<Organization> = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: siteConfig.fields.name,
+  }
+
+  return schema;
+}
 
 export async function generateMetadata(): Promise<Metadata> {
 
@@ -63,17 +74,6 @@ export async function generateMetadata(): Promise<Metadata> {
       follow: !params.fields.seoMetadata.fields.noFollow,
     }
   }
-}
-
-export const generateOrganizationJsonLd = (siteConfig:SiteConfig):WithContext<Organization> => {
-
-  const schema: WithContext<Organization> = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: siteConfig.fields.name,
-  }
-
-  return schema;
 }
 
 export default async function Page() {
