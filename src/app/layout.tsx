@@ -21,7 +21,7 @@ const gorditaRegular = localFont({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://images.ctfassets.net'),
+  metadataBase: new URL('https://images.ctfassets.net/'),
 }
 
 export default function RootLayout({

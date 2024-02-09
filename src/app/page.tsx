@@ -30,7 +30,11 @@ export async function generateMetadata(): Promise<Metadata> {
   })
 
   const siteConfig: SiteConfig = response.items[0];
-  console.log(siteConfig.fields);
+  console.log(siteConfig.fields.seoMetadata.fields.ogImage.fields.file);
+
+  var ogImageUrl = siteConfig.fields.seoMetadata.fields.ogImage.fields.file.url;
+  var ogImageUrlStripped = ogImageUrl.split('/').slice(3).join('/');
+  console.log(ogImageUrlStripped);
 
   return {
     title: siteConfig.fields.seoMetadata.fields.seoTitle,
@@ -42,7 +46,7 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: siteConfig.fields.seoMetadata.fields.seoTitle,
       images: [
         {
-          url: siteConfig.fields.seoMetadata.fields.ogImage.fields.file.url,
+          url: ogImageUrlStripped,
           width: 1200,
           height: 630,
           alt: siteConfig.fields.seoMetadata.fields.ogImage.fields.description,
@@ -56,7 +60,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: siteConfig.fields.seoMetadata.fields.seoTitle,
       description: siteConfig.fields.seoMetadata.fields.seoTitle,
       creator: '@protopace',
-      images: [`https: ${siteConfig.fields.seoMetadata.fields.ogImage.fields.file.url}`],
+      images: [ogImageUrlStripped],
     },
     verification: {
       google: siteConfig.fields.googleVerification,
