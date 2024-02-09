@@ -38,7 +38,6 @@ const addOrganizacionJsonLd = (siteConfig:SiteConfig):WithContext<Organization> 
     }
   }
 
-  console.log(schema);
   return schema;
 }
 
@@ -96,7 +95,7 @@ export default async function Page() {
   const structuredData = { __html:JSON.stringify(addOrganizacionJsonLd(siteConfig))}
 
   return (
-    <div>
+    <>
       <Script
         type="application/ld+json"
         key="organization-jsonld"
@@ -107,6 +106,6 @@ export default async function Page() {
       <div className="container mx-auto px-5">
         <Link href={"/blog"}>Blog</Link>
       </div>
-    </div>
+    </>
   );
 }
