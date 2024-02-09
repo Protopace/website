@@ -42,7 +42,7 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: siteConfig.fields.seoMetadata.fields.seoTitle,
       images: [
         {
-          url: `https: ${siteConfig.fields.seoMetadata.fields.ogImage.fields.file.url}`,
+          url: siteConfig.fields.seoMetadata.fields.ogImage.fields.file.url,
           width: 1200,
           height: 630,
           alt: siteConfig.fields.seoMetadata.fields.ogImage.fields.description,

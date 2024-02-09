@@ -1,5 +1,4 @@
 import "./globals.css";
-import { client } from "@/src/app/api/client";
 import { Metadata } from "next";
 import { cn } from "@/src/lib/utils";
 import { Quicksand } from "next/font/google";
@@ -21,8 +20,9 @@ const gorditaRegular = localFont({
   display: 'swap',
 })
 
-/* Populate metadata on the layout page */
-
+export const metadata: Metadata = {
+  metadataBase: new URL('https://images.ctfassets.net'),
+}
 
 export default function RootLayout({
   children,
