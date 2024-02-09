@@ -87,7 +87,7 @@ export default async function Page() {
       <Script
         type="application/ld+json"
         key="organization-jsonld"
-        strategy="beforeInteractive"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={structuredData}
       />
 
