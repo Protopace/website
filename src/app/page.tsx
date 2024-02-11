@@ -1,11 +1,10 @@
-import { cache } from "react";
 import { client } from "@/api/client";
 import { Metadata } from "next";
 import { SiteConfig } from "@/api/interfaces/site-config";
 import Script from "next/script";
 import { Organization, WithContext } from "schema-dts";
 
-const getSiteConfig = cache(async() => {
+async function getSiteConfig() {
   const response = await client.getEntries({
     content_type: "siteConfig",
   })
@@ -13,7 +12,7 @@ const getSiteConfig = cache(async() => {
   const siteConfig: SiteConfig = response.items[0];
 
   return siteConfig;
-})
+}
 
 const addOrganizacionJsonLd = (siteConfig:SiteConfig):WithContext<Organization> => {
 
