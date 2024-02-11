@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 import { Quicksand } from "next/font/google";
 import localFont from 'next/font/local';
 
-import { cache } from "react"
 import { client } from "@/api/client"
 import { SiteConfig } from "@/api/interfaces/site-config"
 
@@ -12,7 +11,14 @@ import { SiteConfig } from "@/api/interfaces/site-config"
 import NavBar from "@/components/layout/navbar";
 import Footer from "@/components/footer";
 
-/* Import fonts to the main layout */
+async function getSiteConfig() {
+  const response = await client.getEntries({
+    content_type: "siteConfig",
+  })
+  
+  const siteConfig: SiteConfig = response.items[0];
+  return siteConfig;
+}
 
 const quicksand = Quicksand({
   variable: "--font-quicksand",
@@ -29,15 +35,6 @@ const gorditaRegular = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL('https://images.ctfassets.net/'),
 }
-
-const getSiteConfig = cache(async() => {
-  const response = await client.getEntries({
-    content_type: "siteConfig",
-  })
-  
-  const siteConfig: SiteConfig = response.items[0];
-  return siteConfig;
-})
 
 export default async function RootLayout({
   children
