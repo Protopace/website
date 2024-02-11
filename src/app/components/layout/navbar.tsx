@@ -95,30 +95,27 @@ export default function NavBar({
       <div className={`fixed top-24 w-[100%] h-screen sm:hidden bg-white ease-in duration-300 ${menuOpen ? "right-0" : "right-[-100%]"
         }`}>
         
-        <div className="container py-4">
           <div className="sm:flex">
-            <ul className="flex flex-col items-left gap-y-6">
-              <li onClick={() => setMenuOpen(false)}>
-                <Button
-                  asChild
-                  variant="ghost">
-                  <Link href="/blog" className="font-bold">
-                    Blog
-                  </Link>
-                </Button>
+            <ul className="flex flex-col">
+
+              <li className="flex border-b-2 h-24" onClick={() => setMenuOpen(false)}>
+                <div className="flex container items-center">
+                    <Link href="/blog" className="text-[hsl(var(--primary))]">
+                      Blog
+                    </Link>
+                </div>
               </li>
 
-              <li onClick={() => setMenuOpen(false)}>
-                <Button
-                  asChild>
-                  <Link href="/blog" className="font-bold">
-                    Contact us
-                  </Link>
-                </Button>
+              <li className="flex border-b-2 h-24" onClick={() => setMenuOpen(false)}>
+                <div className="flex container items-center">
+                    <Link href="/blog" className="font-bold text-[hsl(var(--primary))]">
+                      Contact Us
+                    </Link>
+                </div>
               </li>
+
             </ul>
           </div>
-        </div>
 
       </div>
     </nav>
