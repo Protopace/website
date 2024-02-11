@@ -1,13 +1,13 @@
 import Link from "next/link";
 
-import Avatar from "../../components/avatar";
-import Date from "../../components/date";
+import Avatar from "@/components/avatar";
+import Date from "@/components/date";
 import CoverImage from "../cover-image";
 
-import { client } from "@/src/app/api/client";
-import { Post } from "@/src/app/api/interfaces/post";
+import { client } from "@/api/client";
+import { Post } from "@/api/interfaces/post";
 
-import RichText from "@/src/app/components/rich-text";
+import RichText from "@/components/rich-text";
 
 type Props = {
   params: {

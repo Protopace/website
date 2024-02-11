@@ -1,8 +1,7 @@
-import Link from "next/link";
 import { cache } from "react";
-import { client } from "@/src/app/api/client";``
+import { client } from "@/api/client";
 import { Metadata } from "next";
-import { SiteConfig } from "./api/interfaces/site-config";
+import { SiteConfig } from "@/api/interfaces/site-config";
 import Script from "next/script";
 import { Organization, WithContext } from "schema-dts";
 
@@ -104,7 +103,7 @@ export default async function Page() {
       />
 
       <div className="container mx-auto px-5">
-        <Link href={"/blog"}>Blog</Link>
+        <h1>Hola este es mi home</h1>
       </div>
     </>
   );

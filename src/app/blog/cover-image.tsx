@@ -1,4 +1,4 @@
-import ContentfulImage from "../components/contentful-image";
+import ContentfulImage from "@/components/contentful-image";
 import Link from "next/link";
 
 function cn(...classes: any[]) {

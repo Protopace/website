@@ -1,6 +1,6 @@
-import HeroPost from "@/src/app/blog/hero-post";
-import { client } from "@/src/app/api/client";
-import { Post } from "@/src/app/api/interfaces/post";
+import HeroPost from "@/blog/hero-post";
+import { client } from "@/api/client";
+import { Post } from "@/api/interfaces/post";
 
 export default async function Page() {
   
