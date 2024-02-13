@@ -9,7 +9,7 @@ import { SiteConfig } from "@/api/interfaces/site-config"
 
 
 import NavBar from "@/components/layout/navbar";
-import Footer from "@/components/footer";
+import Footer from "@/components/layout/footer";
 
 async function getSiteConfig() {
   const response = await client.getEntries({
@@ -46,12 +46,16 @@ export default async function RootLayout({
 
   return (
     <html lang="en-US" className={cn(quicksand.className, gorditaRegular.variable)}>
-      <body>
-          <NavBar
+      <body className="">
+        <NavBar
             siteConfig={siteConfig}
           />
-            <main>{children}</main>
-          <Footer />
+          <main className="pt-24">
+            {children}
+          </main>
+          <Footer 
+            siteConfig={siteConfig}
+            />
       </body>
     </html>
   );

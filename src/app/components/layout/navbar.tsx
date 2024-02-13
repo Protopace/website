@@ -2,11 +2,9 @@
 
 import Link from "next/link"
 import { useState } from "react"
-
 import { SiteConfig } from "@/api/interfaces/site-config"
 
 import ContentfulImage from "@/components/contentful-image"
-import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 function HamburguerMenu({
@@ -47,7 +45,7 @@ export default function NavBar({
   }
 
   return (
-    <nav className="fixed w-full h-24 border-b-2 bg-white">
+    <nav className="fixed w-full h-16 border-b-2 bg-white">
       <div className="flex container justify-between items-center h-full w-full">
 
         <span onClick={() => setMenuOpen(false)}>
@@ -55,7 +53,7 @@ export default function NavBar({
             <ContentfulImage
               src={`https:${siteConfig.fields.logo.fields.file.url}`}
               alt={siteConfig.fields.logo.fields.description}
-              width={120}
+              width={100}
               height={100}
             />
           </Link>
