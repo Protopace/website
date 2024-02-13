@@ -16,7 +16,7 @@ export default function Footer({
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
 
         <div className="md:flex md:justify-between">
-          <div className="mb-6 md:mb-0">
+          <div className="flex mb-6 md:mb-0 justify-center position:relative">
             <Link href="/" className="flex py-6 items-center">
               <ContentfulImage
                 src={`https:${siteConfig.fields.logo.fields.file.url}`}
@@ -52,11 +52,11 @@ export default function Footer({
           </div>
         </div>
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-        <div className="sm:flex sm:items-center sm:justify-between">
-          <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-            © 2024 <Link href="/" className="hover:underline">Protopace™</Link>. All Rights Reserved.
+        <div className="sm:flex sm:justify-between">
+          <span className="flex text-sm text-gray-500 sm:text-center dark:text-gray-400 justify-center">
+            © 2024&nbsp;<Link href="/" className="hover:underline">Protopace™</Link>. All Rights Reserved.
           </span>
-          <div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
+          <div className="flex mt-4 space-x-6 justify-center sm:mt-0">
             <Link href="https://www.linkedin.com/company/protopace/" target="_blank" className="text-gray-500 hover:text-gray-900">
               <Linkedin></Linkedin>
             </Link>

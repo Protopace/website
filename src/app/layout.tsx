@@ -50,7 +50,7 @@ export default async function RootLayout({
         <NavBar
             siteConfig={siteConfig}
           />
-          <main className="pt-24">
+          <main className="pt-16">
             {children}
           </main>
           <Footer 

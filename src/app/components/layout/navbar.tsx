@@ -90,13 +90,13 @@ export default function NavBar({
         </div>
       </div>
 
-      <div className={`fixed top-24 w-[100%] h-screen sm:hidden bg-white ease-in duration-300 ${menuOpen ? "right-0" : "right-[-100%]"
+      <div className={`fixed w-[100%] h-screen sm:hidden bg-white ease-in duration-300 ${menuOpen ? "right-0" : "right-[-100%]"
         }`}>
         
           <div className="sm:flex">
             <ul className="flex flex-col">
 
-              <li className="flex border-b-2 h-24" onClick={() => setMenuOpen(false)}>
+              <li className="flex border-y-2 h-16" onClick={() => setMenuOpen(false)}>
                 <div className="flex container items-center">
                     <Link href="/blog" className="text-[hsl(var(--primary))]">
                       Blog
@@ -104,7 +104,7 @@ export default function NavBar({
                 </div>
               </li>
 
-              <li className="flex border-b-2 h-24" onClick={() => setMenuOpen(false)}>
+              <li className="flex border-b-2 h-16" onClick={() => setMenuOpen(false)}>
                 <div className="flex container items-center">
                     <Link href="/blog" className="font-bold text-[hsl(var(--primary))]">
                       Contact Us
