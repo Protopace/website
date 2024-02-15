@@ -9,9 +9,9 @@ import { Button } from "@/components/ui/button"
 
 function HamburguerMenu({
   menuOpen
-}:{
+}: {
   menuOpen: boolean
-  }) {
+}) {
 
   return (
 
@@ -30,7 +30,8 @@ function HamburguerMenu({
         }`} />
     </>
 
-  )}
+  )
+}
 
 export default function NavBar({
   siteConfig
@@ -53,8 +54,8 @@ export default function NavBar({
             <ContentfulImage
               src={`https:${siteConfig.fields.logo.fields.file.url}`}
               alt={siteConfig.fields.logo.fields.description}
-              width={100}
-              height={100}
+              width={90}
+              height={46}
             />
           </Link>
         </span>
@@ -73,9 +74,9 @@ export default function NavBar({
 
             <li>
               <Button
-                asChild>
-                <Link href="/blog" className="font-bold">
-                  Contact us
+                className="text-base px-6">
+                <Link href="/blog" >
+                  Subscribe
                 </Link>
               </Button>
             </li>
@@ -83,8 +84,8 @@ export default function NavBar({
         </div>
 
         <div onClick={toggleNavbar} className="sm:hidden cursor-pointer pl-24">
-          <HamburguerMenu 
-            menuOpen = {menuOpen}
+          <HamburguerMenu
+            menuOpen={menuOpen}
           >
           </HamburguerMenu>
         </div>
@@ -92,28 +93,24 @@ export default function NavBar({
 
       <div className={`fixed w-[100%] h-screen sm:hidden bg-white ease-in duration-300 ${menuOpen ? "right-0" : "right-[-100%]"
         }`}>
-        
-          <div className="sm:flex">
-            <ul className="flex flex-col">
 
-              <li className="flex border-y-2 h-16" onClick={() => setMenuOpen(false)}>
-                <div className="flex container items-center">
-                    <Link href="/blog" className="text-[hsl(var(--primary))]">
-                      Blog
-                    </Link>
-                </div>
-              </li>
+        <div className="sm:flex">
+          <ul className="flex flex-col">
 
-              <li className="flex border-b-2 h-16" onClick={() => setMenuOpen(false)}>
-                <div className="flex container items-center">
-                    <Link href="/blog" className="font-bold text-[hsl(var(--primary))]">
-                      Contact Us
-                    </Link>
-                </div>
-              </li>
+            <li className="flex border-y-2 h-24" onClick={() => setMenuOpen(false)}>
+              <Link href="/blog" className="flex container items-center w-full h-full text-[hsl(var(--primary))]">
+                Blog
+              </Link>
+            </li>
 
-            </ul>
-          </div>
+            <li className="flex border-b-2 h-24" onClick={() => setMenuOpen(false)}>
+              <Link href="/blog" className="flex container items-center w-full h-full text-[hsl(var(--primary))] font-bold">
+                Contact Us
+              </Link>
+            </li>
+
+          </ul>
+        </div>
 
       </div>
     </nav>

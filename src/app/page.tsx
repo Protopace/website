@@ -4,6 +4,8 @@ import { SiteConfig } from "@/api/interfaces/site-config";
 import Script from "next/script";
 import { Organization, WithContext } from "schema-dts";
 
+import Hero from "@/components/index/hero";
+
 async function getSiteConfig() {
   const response = await client.getEntries({
     content_type: "siteConfig",
@@ -101,9 +103,7 @@ export default async function Page() {
         dangerouslySetInnerHTML={structuredData}
       />
 
-      <div className="container mx-auto px-5">
-        <h1>Hola este es mi home</h1>
-      </div>
+      <Hero />
     </>
   );
 }

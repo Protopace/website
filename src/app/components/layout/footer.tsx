@@ -21,8 +21,8 @@ export default function Footer({
               <ContentfulImage
                 src={`https:${siteConfig.fields.logo.fields.file.url}`}
                 alt={siteConfig.fields.logo.fields.description}
-                width={150}
-                height={100}
+                width={100}
+                height={51}
               />
             </Link>
           </div>
