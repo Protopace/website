@@ -75,7 +75,7 @@ export default function NavBar({
             <li>
               <Button
                 className="text-base px-6">
-                <Link href="/blog" >
+                <Link href="/" >
                   Subscribe
                 </Link>
               </Button>

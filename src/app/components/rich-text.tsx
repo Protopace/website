@@ -80,7 +80,11 @@ const options = {
   },
 };
 
-const RichText = ({ content }: any) => {
+const RichText = ({
+  content
+}:{
+  content:any
+}) => {
   return <>{documentToReactComponents(content, options)}</>;
 };
 

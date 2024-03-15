@@ -27,15 +27,10 @@ export default async function PostPage({ params } : Props ) {
     "fields.slug": slug,
   })
   const post : Post = response.items[0];
+  console.log(post.fields.content);
 
   return (
     <div className="container mx-auto px-5">
-      <h2 className="text-2xl md:text-4xl font-bold tracking-tight md:tracking-tighter leading-tight mb-20 mt-8">
-        <Link href="/" className="hover:underline">
-          Blog
-        </Link>
-        .
-      </h2>
       <article>
         <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
           {post.fields.title}

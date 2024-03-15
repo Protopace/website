@@ -7,7 +7,6 @@ import localFont from 'next/font/local';
 import { client } from "@/api/client"
 import { SiteConfig } from "@/api/interfaces/site-config"
 
-
 import NavBar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 
@@ -46,7 +45,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en-US" className={cn(quicksand.className, gorditaRegular.variable)}>
-      <body className="">
+      <body className="">       
         <NavBar
             siteConfig={siteConfig}
           />
