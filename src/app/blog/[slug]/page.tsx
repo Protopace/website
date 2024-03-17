@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import Avatar from "@/components/avatar";
+import { Avatar } from "@/components/ui/avatar";
 import Date from "@/components/date";
 import CoverImage from "../cover-image";
 
@@ -35,11 +35,7 @@ export default async function PostPage({ params } : Props ) {
         <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
           {post.fields.title}
         </h1>
-        <div className="hidden md:block md:mb-12">
-          {post.fields.author.fields.name && (
-            <Avatar name={post.fields.author.fields.name} picture={post.fields.author.fields.picture} />
-          )}
-        </div>
+
         <div className="mb-8 md:mb-16 sm:mx-0">
           <CoverImage
             title={post.fields.title}
@@ -48,11 +44,7 @@ export default async function PostPage({ params } : Props ) {
             />
         </div>
         <div className="max-w-2xl mx-auto">
-          <div className="block md:hidden mb-6">
-            {post.fields.author.fields.name && (
-              <Avatar name={post.fields.author.fields.name} picture={post.fields.author.fields.picture} />
-            )}
-          </div>
+
           <div className="mb-6 text-lg">
             <Date dateString={post.fields.date} />
           </div>
